@@ -1,0 +1,75 @@
+<!-- call the common header -->
+<div class="header-section" th:fragment="header">
+	<link href="" rel="stylesheet" id="bootstrap-css">
+	<!-- MB-5  adds the gap between content and the header! -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom box-shadow mb-5">
+		<a th:href="@{/Login/}" class="navbar-brand">Login</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li ec:authorize="isAuthenticated()">
+					<a class="nav-link" href="#"> Welcome, <span th:text="${#authentication.name}"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/Registration/}">Register</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/Artifacts/all}">Artifacts</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/Users/allUsers}">Users</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/Artifacts/searchForm}">Search For An Artifact</a>
+				</li>
+
+				<div class="dropdown show" sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						User Actions
+					</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<li class="nav-item">
+							<a class="text-dark" th:href="@{/Users/searchUserForm}">Search Users</a>
+						</li>
+						<li class="nav-item">
+							<a class="text-dark" th:href="@{/Users/AddNewUser}">Add New User</a>
+						</li>
+						<li class="nav-item">
+							<a class="text-dark" th:href="@{/Users/adminUser}">User Admin</a>
+						</li>
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="dropdown show" sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Artifact Admin Actions
+					</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<!-- ADMIN & MANAGER -->
+						<li sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" class="nav-item">
+							<a class="text-dark" th:href="@{/Artifacts/AddNewArtifact}">Add New Artifact</a>
+						</li>
+						<!-- ADMIN ONLY -->
+						<li sec:authorize="hasAnyRole('ADMIN')" class="nav-item">
+							<a class="text-dark" th:href="@{/Artifacts/admin}">Artifact Admin</a>
+						</li>
+						<!-- ADMIN ONLY 
+						<li sec:authorize="hasAnyRole('ADMIN')" class="nav-item">
+							<a class="text-dark" th:href="@{/Artifacts/editForm}">Edit Artifact</a>
+						</li>-->
+			</ul>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/Artifacts/Login}">Logout</a>
+			</li>
+		</div>
+</div>
+</div>
+</nav>
+</div>

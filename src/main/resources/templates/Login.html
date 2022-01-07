@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+
+<head>
+	<!--call the style sheet-->
+	<link rel="stylesheet" href="css\login.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Include the above in your HEAD tag -->
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="wrapper fadeInDown">
+			<div id="formContent">
+				<!-- Tabs Titles -->
+
+				<!-- Icon -->
+				<div class="fadeIn first">
+					<img th:src="@{/img/Avatar.jpg}" alt="image here" class="icon" />
+				</div>
+
+				<!-- Login Form, we call the model and the doLogin inside the controller. we POST this  was th:action="@{doLogin}"-->
+				<form action="#" th:action="@{/Login/}" th:object="${LoginModel}" method="post">
+
+					<input type="text" id="login" th:field="*{username}" class="fadeIn second" name="login"
+						placeholder="username" required>
+					<div class="fieldError">
+						<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Enter your User Name</p>
+					</div>
+					<input type="text" id="password" th:field="*{password}" class="fadeIn third" name="password"
+						placeholder="password">
+					<div class="fieldError">
+						<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Enter your password!!</p>
+					</div>
+					<input type="submit" class="fadeIn fourth" value="Log In">
+					<div th:if="${#fields.hasErrors('*')}">List of errors: </div>
+					<div th:each="err : ${#fields.errors('*')}">
+						<span th:text="${err}" class="fieldError"></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

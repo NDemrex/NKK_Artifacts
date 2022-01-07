@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+
+<head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<form action="#" th:action="@{/Artifacts/addNew}" th:object="${ArtifactsModel}" method="post">
+
+			<div class="container">
+				<input type="hidden" th:field="${ArtifactsModel.ID}" name="ID">
+				
+				<div class="input-group input-group-lg">
+					<span class="input-group-text" id="inputGroup-sizing-lg">Artifact Name</span>
+					<input type="text" class="form-control" aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-lg" th:field="*{name}" placeholder="Artifact Name"
+						name="name" required>
+					<div class="fieldError">
+						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Artifact Name Error</p>
+					</div>
+				</div>
+
+				<div class="input-group input-group-lg">
+					<span class="input-group-text" id="inputGroup-sizing-lg">Description</span>
+					<input type="text" class="form-control" aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-lg" th:field="*{description}"
+						placeholder="Artifact Description" name="description" required>
+					<div class="fieldError">
+						<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description error</p>
+					</div>
+				</div>
+
+				<div class="input-group input-group-lg">
+					<span class="input-group-text" id="inputGroup-sizing-lg">Artifact Age</span>
+					<input type="text" class="form-control" aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-lg" th:field="*{age}" placeholder="Artifact Age" name="age"
+						required>
+					<div class="fieldError">
+						<p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</p>
+					</div>
+				</div>
+
+				<div class="input-group input-group-lg">
+					<span class="input-group-text" id="inputGroup-sizing-lg">Price</span>
+					<input type="text" class="form-control" aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-lg" th:field="*{price}" placeholder="Artifact Price"
+						name="price" required>
+					<div class="fieldError">
+						<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
+					</div>
+				</div>
+
+
+				<div class="input-group input-group-lg">
+					<span class="input-group-text" id="inputGroup-sizing-lg">Quantity</span>
+					<input type="text" class="form-control" aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-lg" th:field="*{quantity}" placeholder="Quantity"
+						name="quantity" required>
+					<div class="fieldError">
+						<p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity Error</p>
+					</div>
+				</div>
+					<br>
+					<br>
+				<button type="submit" class="btn btn-primary" value="add">Add New Artifact</button>
+			</div>
+			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+			<div th:each="err : ${#fields.errors('*')}">
+				<span th:text="${err}" class="fieldError"></span>
+			</div>
+	</div>
+	</form>
+	</div>
+</body>
+
+</html>

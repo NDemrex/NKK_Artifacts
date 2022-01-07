@@ -1,0 +1,37 @@
+<!-- THIS WILL DISPLAY THE ARTIFACTS FOR SALE, WHEN SEARCHING FOR AN ARTIFACT THIS PAGE LOADS-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+	<head>
+<link rel="stylesheet" href="css\Artifact.css" th:href="@{css/Artifacts.css}">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container-xl">
+	<!--<p th:text="${ArtifactsModel}"></p>-->
+	<h1>Check out these Artifacts!!</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Name of Item</th>
+			<th>Description of Item</th>
+			<th>Age of Item</th>
+			<th>Price of Item</th>
+			<th>Quantity</th>
+		</tr>
+		<!-- Now we need to fill in the data. -->
+		<tr th:each="a : ${artifacts}">
+			<td th:text="${a.name}"></td>
+			<td th:text="${a.description}"></td>
+			<td th:text="${a.age}"></td>
+			<td th:text="${a.price}"></td>
+			<td th:text="${a.quantity}"></td>
+		</tr>
+	</table>
+
+</div>
+</body>
+<footer>
+
+</html>

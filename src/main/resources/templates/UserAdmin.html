@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+
+<head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div layout:fragment="content" class="container-xl">
+		<h1 th:text="${title}"></h1>
+		<table class="table table-striped">
+			<tr class="table-primary">>
+			
+				<th>Username</th>
+				<th>Password</th>
+				<th>Role</th>
+				<th>Delete</th>
+				<th>Update</th>
+
+			</tr>
+			<tr th:each="u : ${users}">
+				<td th:text="${u.username}"></td>
+				<td th:text="${u.password}"></td>
+				<td th:text="${u.role}"></td>
+				
+				<td>
+					<form action="#" th:action="@{/Users/deleteUser}" th:object="${users}" method="post">
+						<input name="id" type="hidden" th:value="${u.id}"> 
+						<input name="username" type="hidden" th:value="${u.username}">
+						<input name="password" type="hidden" th:value="${u.password}">
+						<input name="role" type="hidden" th:value="${u.role}">
+						<button class="btn btn-danger" type="submit" name="deleteUser">Delete</button>
+					</form>
+				</td>
+				<td>
+					<form action="#" th:action="@{/Users/editUserForm}" th:object="${users}" method="post">
+						<input name="id" type="hidden" th:value="${u.id}">
+						<input name="username" type="hidden" th:value="${u.username}">
+						<input name="password" type="hidden" th:value="${u.password}">
+						<input name="role" type="hidden" th:value="${u.role}">
+						<button class="btn btn-secondary" type="submit" name="editUser">Edit</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>

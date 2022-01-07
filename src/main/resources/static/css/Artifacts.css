@@ -1,0 +1,16 @@
+* {
+	font-family: Times New Roman;
+}
+
+.title_box {
+	border: 2px solid #222;
+	border-radius: 5px;
+	width: fit-content;
+	padding: 0.5m;
+}
+
+table, th, td {
+	border: 5px solid black;
+	border-collapse: collapse;
+	padding: 2px;
+}

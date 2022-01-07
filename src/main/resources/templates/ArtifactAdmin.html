@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+
+<head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+/* Act 4, Prof Gave us code
+Models used in this page:
+1. SearchModel.searchTerm is a string
+2. orders is an arraylist of type OrderModel
+(Reflect for Artifacts)
+
+can I show the users here?
+/*
+
+<body>
+	<div layout:fragment="content" class="container-xl">
+		<h1 th:text="${title}"></h1>
+		<table class="table table-striped">
+			<tr class="table-primary">
+				<th>ID</th>
+				<th>Artifact Name</th>
+				<th>Description</th>				
+				<th>Age</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Delete</th>
+				<th>Edit</th>
+
+			</tr>
+			<tr th:each="a: ${artifacts}">
+				<td th:text="${a.ID}"></td>
+				<td th:text="${a.name}"></td>
+				<td th:text="${a.description}"></td>
+				<td th:text="${a.age}"></td>
+				<td th:text="${a.price}"></td>
+				<td th:text="${a.quantity}"></td>
+				<td>
+					<form action="#" th:action="@{/Artifacts/delete}" th:object="${artifact}" method="post">
+						<input name="ID" type="hidden" th:value="${a.ID}">
+						<input name="name" type="hidden" th:value="${a.name}">
+						<input name="description" type="hidden" th:value="${a.description}">
+						<input name="price" type="hidden" th:value="${a.age}">
+						<input name="price" type="hidden" th:value="${a.price}">
+						<input name="quantity" type="hidden" th:value="${a.quantity}">
+						<button class="btn btn-danger" type="submit" name="deleteItem">Delete</button>
+					</form>
+				</td>
+				<td>
+					<form action="#" th:action="@{/Artifacts/editForm}" th:object="${artifacts}" method="post">
+						<input name="ID" type="hidden" th:value="${a.ID}">
+						<input name="name" type="hidden" th:value="${a.name}">
+						<input name="description" type="hidden" th:value="${a.description}">
+						<input name="price" type="hidden" th:value="${a.age}">
+						<input name="price" type="hidden" th:value="${a.price}">
+						<input name="quantity" type="hidden" th:value="${a.quantity}">
+						<button class="btn btn-secondary" type="submit" name="editItem">Edit</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+
+<head>
+	<link rel="stylesheet" th:href="@{css/Registration.css}" />
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container register-form">
+			<div class="form">
+				<img th:src="@{/img/Goblin.png}" alt="image here" class="icon" />
+				<div class="note">
+					<p>Welcome to the greatest store of all time</p>
+				</div>
+				<form action="#" th:action="@{doRegistration}" th:object="${registrationModel}" method="post">
+					<div class="form-content">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" class="form-control" th:field="*{FirstName}"
+										placeholder="Your Name *" required>
+									<div class="fieldError">
+										<p th:if="${#fields.hasErrors('FirstName')}" th:errors="*{FirstName}">Enter your
+											First Name</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" th:field="*{LastName}"
+										placeholder="Last Name *" required>
+									<div class="fieldError">
+										<p th:if="${#fields.hasErrors('LastName')}" th:errors="*{LastName}">You need a
+											Last Name</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" th:field="*{PhoneNumber}"
+										placeholder="Phone Number *" required>
+									<div class="fieldError">
+										<p th:if="${#fields.hasErrors('PhoneNumber')}" th:errors="*{PhoneNumber}">PLease
+											Enter a Phone Number!</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" class="form-control" th:field="*{Password}"
+										placeholder="Your Password *" required>
+									<div class="fieldError">
+										<p th:if="${#fields.hasErrors('Password')}" th:errors="*{Password}">Password
+											error</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Confirm Password *" required>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" th:field="*{EmailAddress}"
+										placeholder="EmailAddress *" required>
+									<div class="fieldError">
+										<p th:if="${#fields.hasErrors('EmailAddress')}" th:errors="*{EmailAddress}">
+											Please enter an Email Address</p>
+									</div>
+								</div>
+								<input type="text" class="form-control" th:field="*{UserName}" placeholder="User Name *"
+									required>
+								<div class="fieldError">
+									<p th:if="${#fields.hasErrors('UserName')}" th:errors="*{UserName}">User Name</p>
+								</div>
+							</div>
+						</div>
+						<input type="submit" class="fadeIn fourth" value="Log In">
+						<div th:if="${#fields.hasErrors('*')}">List of errors: </div>
+						<div th:each="err : ${#fields.errors('*')}">
+							<span th:text="${err}" class="fieldError"></span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

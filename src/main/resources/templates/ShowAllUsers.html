@@ -1,0 +1,37 @@
+<!-- This will display for Demrex and shad, then we want to show all of the users and be able to use the CRUD methods on the users. EDIT THIS FOR USERS -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+
+<head>
+	<link rel="stylesheet" href="css\Artifact.css" th:href="@{css/Artifacts.css}">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div layout:fragment="content" class="container-xl">
+
+		<h1>The users that use the platform are:</h1>
+		<table class="table table-striped">
+			<tr>
+				<th>Username</th>
+				<th>Password</th>
+				<th>Role</th>
+
+			</tr>
+			<!-- Now we need to fill in the  User data. -->
+			<tr th:each="u : ${users}">
+				<td th:text="${u.username}"></td>
+				<td th:text="${u.password}"></td>
+				<td th:text="${u.role}"></td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+<footer>
+
+</html>

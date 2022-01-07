@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="Layouts/defaultTemplate">
+	
+	<head>
+	<link rel="stylesheet" href="css\SearchForm.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<form action="#" th:action="@{/Users/userSearchResults}" th:object="${SearchUserModel}" method="post">
+			<div class="container">
+				<label for="searchTerm"><b>Search For A User </b></label>
+				<br>
+				<input type="text" th:field="*{searchTerm}" placeholder="Enter a search term" name="searchTerm"
+					required>
+				<div class="fieldError">
+					<p th:if="${#fields.hasErrors('searchTerm')}" th:errors="*{searchTerm}">Search Term Error</p>
+				</div>
+				<br>
+				<button type="submit">Search</button>
+			</div>
+			<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+			<div th:each="err : ${#fields.errors('*')}">
+				<span th:text="${err}" class="fieldError"></span>
+			</div>
+
+		</form>
+	</div>
+</body>
+
+
+</html>
